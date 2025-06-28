@@ -1,0 +1,11 @@
+name: rocket-data-ingestion
+
+services:
+  producer_one:
+    build:
+      context: .
+      dockerfile: docker/dockerfile.producer.1
+    ports:
+      - "8044:8044"
+    
+
