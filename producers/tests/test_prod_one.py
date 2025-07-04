@@ -9,4 +9,3 @@ def test_ping():
     assert response.status_code == 200
     assert response.json() == {"ping": "pong"}
     assert True
-    
