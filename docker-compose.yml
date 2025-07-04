@@ -12,3 +12,16 @@ services:
       interval: 10s
       timeout: 10s
       retries: 3
+
+
+  producer_two:
+    build:
+      context: .
+      dockerfile: docker/dockerfile.producer.2
+    ports:
+      - "8045:8045"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://producer_two:8045/ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 3

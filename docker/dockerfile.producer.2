@@ -1,0 +1,19 @@
+FROM python:3.13-alpine
+
+RUN apk --no-cache add curl
+
+WORKDIR /app
+
+COPY ./producers/ /app/producers/
+
+COPY poetry.lock /app/
+COPY pyproject.toml /app/
+
+RUN pip install poetry 
+
+RUN poetry install --without dev
+
+EXPOSE 8045
+
+CMD ["poetry", "run", "python", "-m", "uvicorn", "producers.rocket_data_gen:app", "--host", "0.0.0.0", "--port", "8045"]
+
